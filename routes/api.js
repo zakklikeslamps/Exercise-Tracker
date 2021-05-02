@@ -1,21 +1,22 @@
 const router = require("express").Router();
-const Workout = require("../models/workout.js");
+Workout = require("../models/workout.js");
 
 //create a new workout route
-router.post("/workouts", ({body}, res) => {
+router.post("../models/workout.js", ({body}, res) => {
     Workout.create({})
         .then(WorkoutDB => {
             console.log(`post: $(WorkoutDB)`)
             res.json(WorkoutDB);
         })
+        .catch(err => {
+            res.status(400).json(err);    
 })
-.catch(err => {
-    res.status(400).json(err);
+
 });
 //});
 
 //find all workouts in db route
-router.get("/workouts", (req, res) => {
+router.get("../models/workout.js", (req, res) => {
     //agg. function
     Workout.aggregate([
         {$addFields: {
